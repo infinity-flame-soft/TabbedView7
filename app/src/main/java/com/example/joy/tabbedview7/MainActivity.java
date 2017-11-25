@@ -31,21 +31,25 @@ public class MainActivity extends AppCompatActivity {
         tabLayout=findViewById(R.id.my_tabs);
         viewPager=findViewById(R.id.my_view_pager);
 
+        //----adapter----------------------------
+        ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addMyFragment(new ContactFragment(),"Contact");
+        viewPagerAdapter.addMyFragment(new InboxFragment(),"Inbox");
 
-
-
+        viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
 
     }
 
 
 
 
-    class viewPagerAdapter extends FragmentPagerAdapter{
+    class ViewPagerAdapter extends FragmentPagerAdapter{
 
         private final List<Fragment> my_lists=new ArrayList<Fragment>();
         private final List<String> my_titles=new ArrayList<String>();
 
-        public viewPagerAdapter(FragmentManager fm) {
+        public ViewPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
